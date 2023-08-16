@@ -1,12 +1,19 @@
 const CONTAINER = document.getElementById("container");
 const SLIDER = document.getElementById("slider");
 const SLIDERVALUESPAN = document.getElementById("sliderValue")
+const RANDOMCOLORBUTTON = document.getElementById("randomColorBtn")
 let divsPerSide = 10;
 let numberOfDivs = 100;
 let divSize = 72;
 let divs;
+let randomColorOn = false;
 
 
+
+let switchRandomColor = function(){
+    randomColorOn = !randomColorOn
+    console.log(`Switched random color to ${randomColorOn}`);
+}
 
 let changeSliderValue = function(){
     SLIDERVALUESPAN.textContent = SLIDER.value;
@@ -31,7 +38,7 @@ let createCanvas = function(){
     
 }
 
-
+RANDOMCOLORBUTTON.addEventListener("click", switchRandomColor)
 let deleteCanvas = function (){
     divs.forEach(node => {
         CONTAINER.removeChild(node)
@@ -43,7 +50,13 @@ let draw = function(){
         let mouseDown = true;
         function startDrawing() {
             if (mouseDown === true) {
-                this.classList.add("black")
+                if (randomColorOn === false) {
+                    this.classList.add("black")
+                } else{
+                    let rngColor1 = Math.floor(Math.random()*1000000)
+                    this.style.backgroundColor = `#${rngColor1}`
+                    console.log(this.style.backgroundColor);
+                }
             }
         }
         function isMouseDown(e) {
