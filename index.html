@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Etch a Sketch</title>
+</head>
+<body>
+    <label for="slider">Number of squares per side: <span id="sliderValue">10</span></label>
+    <input type="range" name="slider" id="slider" value="10" min="1" max="100" oninput="changeSliderValue()">
+    <div id="container">
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
