@@ -2,14 +2,17 @@ const CONTAINER = document.getElementById("container");
 const SLIDER = document.getElementById("slider");
 const SLIDERVALUESPAN = document.getElementById("sliderValue")
 const RANDOMCOLORBUTTON = document.getElementById("randomColorBtn")
+const COLORINPUT = document.getElementById("colorInput")
+console.log(COLORINPUT.value);
+
 let divsPerSide = 10;
 let numberOfDivs = 100;
 let divSize = 72;
 let divs;
 let randomColorOn = false;
-let rngColor1;
-let rngColor2;
-let rngColor3;
+let redColor;
+let greenColor;
+let blueColor;
 
 
 let switchRandomColor = function () {
@@ -51,27 +54,27 @@ let draw = function () {
     divs.forEach(element => {
         let mouseDown = true;
         function generateRandomColor() {
-            rngColor1 = Math.floor(Math.random() * 257)
-            rngColor2 = Math.floor(Math.random() * 257)
-            rngColor3 = Math.floor(Math.random() * 257)
+            redColor = Math.floor(Math.random() * 257)
+            greenColor = Math.floor(Math.random() * 257)
+            blueColor = Math.floor(Math.random() * 257)
         }
         function startDrawing() {
 
             if (mouseDown === true) {
                 if (randomColorOn === false) {
-                    this.style.backgroundColor = "black"
+                    this.style.backgroundColor = COLORINPUT.value
                 } else {
                     generateRandomColor()
-                    this.style.backgroundColor = `rgb(${rngColor1},${rngColor2},${rngColor3})`
+                    this.style.backgroundColor = `rgb(${redColor},${greenColor},${blueColor})`
                 }
             }
         }
         function isMouseDown(e) {
             mouseDown = true
             if (randomColorOn === false) {
-                element.style.backgroundColor = "black"
+                element.style.backgroundColor = COLORINPUT.value
             } else {
-                element.style.backgroundColor = `rgb(${rngColor1},${rngColor2},${rngColor3})`
+                element.style.backgroundColor = `rgb(${redColor},${greenColor},${blueColor})`
             }
             divs.forEach(element => {
                 element.addEventListener("mouseenter", startDrawing)
